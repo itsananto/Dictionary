@@ -4,13 +4,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-item>
-    <ion-label color="primary" floating>Enter Word</ion-label>
-    <ion-input type="text" [(ngModel)]="ActionWord"></ion-input>
-  </ion-item>
 
+
+<ion-content>
+  <!--<ion-item>-->
+    <!--<ion-label color="primary" floating>Enter Word</ion-label>-->
+    <!--<ion-input type="text" [(ngModel)]="ActionWord"></ion-input>-->
+  <!--</ion-item>-->
+
+  <ion-auto-complete (itemSelected)="search()" [dataProvider]="autoCompleteProvider" [options]="{ placeholder : 'Search Word' }" [(ngModel)]="ActionWord"></ion-auto-complete>
   <button ion-button full (click)="search()">Search</button>
+
+
 
   <div *ngIf="Dictionary && Dictionary.ContainsKey(SearchWord)">
     <ion-card *ngFor="let details of Dictionary.Item(SearchWord).Details">
@@ -23,7 +28,7 @@
 
       <ion-item-divider color="light">Examples</ion-item-divider>
       <ion-list *ngFor="let examples of details.Examples">
-        <ion-item>{{examples.Descr}}</ion-item>
+        <blockquote><ion-item>{{examples.Descr}}</ion-item></blockquote>
       </ion-list>
     </ion-card>
   </div>

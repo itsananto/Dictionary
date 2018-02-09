@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class ServiceProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello ServiceProvider Provider');
+
   }
 
   getDictionaryStorage(){

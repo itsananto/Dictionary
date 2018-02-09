@@ -12,6 +12,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServiceProvider } from '../providers/service/service';
 import {HttpClientModule} from "@angular/common/http";
+import {AutoCompleteModule} from "ionic2-auto-complete";
+import { AutocompleteserviceProvider } from '../providers/autocompleteservice/autocompleteservice';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    AutoCompleteModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,7 +41,8 @@ import {HttpClientModule} from "@angular/common/http";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider
+    ServiceProvider,
+    AutocompleteserviceProvider
   ]
 })
 export class AppModule {}
