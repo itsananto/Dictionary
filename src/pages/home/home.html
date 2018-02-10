@@ -18,17 +18,19 @@
 
 
   <div *ngIf="Dictionary && Dictionary.ContainsKey(SearchWord)">
+
     <ion-card *ngFor="let details of Dictionary.Item(SearchWord).Details">
+      <ion-item-divider id="definition" color="light">Definition</ion-item-divider>
       <ion-card-header>
-        {{details.POS}}
+        <i>{{details.POS}}</i>
       </ion-card-header>
       <ion-card-content>
         {{details.Definition}}
       </ion-card-content>
 
-      <ion-item-divider color="light">Examples</ion-item-divider>
-      <ion-list *ngFor="let examples of details.Examples">
-        <blockquote><ion-item>{{examples.Descr}}</ion-item></blockquote>
+      <ion-item-divider id="example" color="light" *ngIf="details.Examples.length>0">Examples</ion-item-divider>
+      <ion-list lines>
+        <ion-item *ngFor="let examples of details.Examples">{{examples.Descr}}</ion-item>
       </ion-list>
     </ion-card>
   </div>

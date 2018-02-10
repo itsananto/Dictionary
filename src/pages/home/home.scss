@@ -1,3 +1,21 @@
-page-home {
+@import "../../../node_modules/ionic2-auto-complete/auto-complete";
 
+ion-auto-complete{
+  width: 100%;
+}
+
+ion-item-divider#definition{
+  font-weight: bold;
+  color: white;
+  background-color: cadetblue;
+}
+
+ion-item-divider#example{
+  font-weight: bold;
+  color: white;
+  background-color: gray;
+}
+
+ion-item{
+  font-size: 1.4rem !important;
 }
