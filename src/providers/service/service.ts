@@ -15,7 +15,7 @@ export class ServiceProvider {
   }
 
   getDictionaryStorage(){
-    return this.http.get('../../assets/json/storage.json');
+    return this.http.get('assets/json/storage.json');
   }
 
 }

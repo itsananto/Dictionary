@@ -15,7 +15,7 @@ export class HomePage {
   Dictionary: KeyedCollection<Words>;
   AllWords: string[];
 
-  constructor(public navCtrl: NavController, public serviveProvider: ServiceProvider, public  autoCompleteProvider: AutocompleteserviceProvider) {
+  constructor(public navCtrl: NavController, public serviveProvider: ServiceProvider, public autoCompleteProvider: AutocompleteserviceProvider) {
 
     this.serviveProvider.getDictionaryStorage().subscribe(data=>{
 
@@ -33,8 +33,6 @@ export class HomePage {
 
   search(){
     this.SearchWord = this.ActionWord;
-    console.log(this.ActionWord);
-    console.log(this.Dictionary.Item(this.ActionWord));
   }
 }
 

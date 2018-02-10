@@ -20,7 +20,7 @@ export class AutocompleteserviceProvider implements AutoCompleteService {
 
   constructor(public http: HttpClient) {
     this.AllWords = new Array<string>();
-    this.http.get('../../assets/json/storage.json').subscribe(data => {
+    this.http.get('assets/json/storage.json').subscribe(data => {
 
       let result = <Words[]>data;
 
@@ -43,3 +43,4 @@ export class AutocompleteserviceProvider implements AutoCompleteService {
   }
 
 }
+
