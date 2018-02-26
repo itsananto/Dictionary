@@ -27,7 +27,6 @@ export class AutocompleteserviceProvider implements AutoCompleteService {
       for (var i = 0; i < result.length; i++) {
         this.AllWords.push(result[i].Descr);
       }
-
     });
   }
 
@@ -38,7 +37,6 @@ export class AutocompleteserviceProvider implements AutoCompleteService {
     for (let i = 0; i < this.AllWords.length; i++) {
       if (this.AllWords[i].startsWith(keyword)) retArray.push(this.AllWords[i]);
     }
-
     return retArray;
   }
 
