@@ -35,7 +35,7 @@ export class AutocompleteserviceProvider implements AutoCompleteService {
     let retArray = new Array<string>();
 
     for (let i = 0; i < this.AllWords.length; i++) {
-      if (this.AllWords[i].startsWith(keyword)) retArray.push(this.AllWords[i]);
+      if (this.AllWords[i].toLocaleLowerCase().startsWith(keyword.toLocaleLowerCase())) retArray.push(this.AllWords[i]);
     }
     return retArray;
   }
