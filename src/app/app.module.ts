@@ -14,6 +14,18 @@ import { ServiceProvider } from '../providers/service/service';
 import {HttpClientModule} from "@angular/common/http";
 import {AutoCompleteModule} from "ionic2-auto-complete";
 import { AutocompleteserviceProvider } from '../providers/autocompleteservice/autocompleteservice';
+import {AngularFireModule} from "angularfire2";
+import {AngularFireDatabase, AngularFireDatabaseModule} from "angularfire2/database";
+import {AngularFireAuthModule} from "angularfire2/auth";
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDRC5H6C9oTqU6PwsLC4IkuV1zxMDdfx-g",
+  authDomain: "dictionary-ea2bb.firebaseapp.com",
+  databaseURL: "https://dictionary-ea2bb.firebaseio.com",
+  projectId: "dictionary-ea2bb",
+  storageBucket: "dictionary-ea2bb.appspot.com",
+  messagingSenderId: "665540583523"
+};
 
 @NgModule({
   declarations: [
@@ -27,7 +39,10 @@ import { AutocompleteserviceProvider } from '../providers/autocompleteservice/au
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +57,8 @@ import { AutocompleteserviceProvider } from '../providers/autocompleteservice/au
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ServiceProvider,
-    AutocompleteserviceProvider
+    AutocompleteserviceProvider,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}

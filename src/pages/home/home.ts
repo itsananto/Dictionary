@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import {ServiceProvider} from "../../providers/service/service";
 import {KeyedCollection} from "../../helper/KeyedCollection";
 import {AutocompleteserviceProvider} from "../../providers/autocompleteservice/autocompleteservice";
+import { AngularFireDatabase } from 'angularfire2/database';
+import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -14,8 +16,13 @@ export class HomePage {
   SearchWord: string;
   Dictionary: KeyedCollection<Words>;
   AllWords: string[];
+  items: Observable<any[]>;
 
-  constructor(public navCtrl: NavController, public serviveProvider: ServiceProvider, public autoCompleteProvider: AutocompleteserviceProvider) {
+  constructor(public navCtrl: NavController, public serviveProvider: ServiceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
+
+    this.items = afDB.list('dictionary/a').valueChanges();
+    debugger;
+
 
     this.serviveProvider.getDictionaryStorage().subscribe(data=>{
 
