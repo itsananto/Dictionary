@@ -15,7 +15,6 @@ export class HomePage {
   ActionWord: string;
   SearchWord: string;
   Dictionary: KeyedCollection<Words>;
-  AllWords: string[];
   items: Observable<any[]>;
 
   constructor(public navCtrl: NavController, public serviveProvider: ServiceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
@@ -28,11 +27,9 @@ export class HomePage {
 
       let result = <Words[]>data;
       this.Dictionary = new KeyedCollection<Words>();
-      this.AllWords = new Array<string>();
 
       for(var i=0;i<result.length;i++){
         this.Dictionary.Add(result[i].Descr, result[i]);
-        this.AllWords.push(result[i].Descr);
       }
 
     });
