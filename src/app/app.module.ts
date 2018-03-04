@@ -10,13 +10,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ServiceProvider } from '../providers/service/service';
 import {HttpClientModule} from "@angular/common/http";
 import {AutoCompleteModule} from "ionic2-auto-complete";
 import { AutocompleteserviceProvider } from '../providers/autocompleteservice/autocompleteservice';
 import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
+import { OfflineserviceProvider } from '../providers/offlineservice/offlineservice';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDRC5H6C9oTqU6PwsLC4IkuV1zxMDdfx-g",
@@ -56,9 +56,9 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider,
     AutocompleteserviceProvider,
-    AngularFireDatabase
+    AngularFireDatabase,
+    OfflineserviceProvider
   ]
 })
 export class AppModule {}

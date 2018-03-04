@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {ServiceProvider} from "../../providers/service/service";
 import {KeyedCollection} from "../../helper/KeyedCollection";
 import {AutocompleteserviceProvider} from "../../providers/autocompleteservice/autocompleteservice";
 import { AngularFireDatabase } from 'angularfire2/database';
 import {Observable} from "rxjs/Observable";
+import {AutoCompleteComponent} from "ionic2-auto-complete";
+import {OfflineserviceProvider} from "../../providers/offlineservice/offlineservice";
 
 
 @Component({
@@ -12,31 +13,48 @@ import {Observable} from "rxjs/Observable";
   templateUrl: 'home.html'
 })
 export class HomePage {
-  ActionWord: string;
+  //ActionWord: string;
   SearchWord: string;
-  Dictionary: KeyedCollection<Words>;
+  OfflineDictionary: KeyedCollection<any>;
   items: Observable<any[]>;
+  IsNetworkAvailable: boolean;
 
-  constructor(public navCtrl: NavController, public serviveProvider: ServiceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
+  WordDetails: any;
 
-    this.items = afDB.list('dictionary/a').valueChanges();
-    debugger;
+  @ViewChild('ActionWord')
+  ActionWord: AutoCompleteComponent;
 
+  constructor(public navCtrl: NavController, public offlineDataProvider: OfflineserviceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
 
-    this.serviveProvider.getDictionaryStorage().subscribe(data=>{
+    //TODO: Check network connectivity
+    this.IsNetworkAvailable = false;
 
-      let result = <Words[]>data;
-      this.Dictionary = new KeyedCollection<Words>();
+    if(this.IsNetworkAvailable){
+      this.items = afDB.list('dictionary/a').valueChanges();
+    }else{
+      this.offlineDataProvider.getDictionaryStorage().subscribe(data=>{
 
-      for(var i=0;i<result.length;i++){
-        this.Dictionary.Add(result[i].Descr, result[i]);
-      }
+        let result = <any[]>data;
+        this.OfflineDictionary = new KeyedCollection<any>();
 
-    });
+        for(var i=0;i<result.length;i++){
+          this.OfflineDictionary.Add(result[i].Descr, result[i]);
+        }
+
+      });
+    }
   }
 
   search(){
-    this.SearchWord = this.ActionWord;
+    this.WordDetails = null;
+    if(this.IsNetworkAvailable) {
+    }
+    else {
+      let searchWord = this.ActionWord.keyword;
+      if (this.OfflineDictionary.ContainsKey(searchWord)) {
+        this.WordDetails = this.OfflineDictionary.Item(searchWord).Details;
+      }
+    }
   }
 }
 

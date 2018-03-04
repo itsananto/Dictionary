@@ -2,8 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AutoCompleteService} from "ionic2-auto-complete";
-import {KeyedCollection} from "../../helper/KeyedCollection";
-import {ServiceProvider} from "../service/service";
 
 /*
   Generated class for the AutocompleteserviceProvider provider.

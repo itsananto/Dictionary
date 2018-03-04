@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
-  Generated class for the ServiceProvider provider.
+  Generated class for the OfflineserviceProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class ServiceProvider {
+export class OfflineserviceProvider {
 
   constructor(public http: HttpClient) {
 

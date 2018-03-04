@@ -4,45 +4,38 @@
   </ion-navbar>
 </ion-header>
 
-
-
 <ion-content>
-  <!--<ion-item>-->
-    <!--<ion-label color="primary" floating>Enter Word</ion-label>-->
-    <!--<ion-input type="text" [(ngModel)]="ActionWord"></ion-input>-->
-  <!--</ion-item>-->
 
-  <ion-auto-complete (itemSelected)="search()" [dataProvider]="autoCompleteProvider" [options]="{ placeholder : 'Search Word' }" [(ngModel)]="ActionWord"></ion-auto-complete>
+  <ion-auto-complete (itemSelected)="search()" [dataProvider]="autoCompleteProvider" [options]="{ placeholder : 'Search Word' }" #ActionWord></ion-auto-complete>
   <button ion-button full (click)="search()">Search</button>
 
-
-
-  <div *ngIf="Dictionary && Dictionary.ContainsKey(SearchWord)">
-
-    <ion-card *ngFor="let details of Dictionary.Item(SearchWord).Details">
+  <ng-container *ngIf="WordDetails">
+    <ion-card *ngFor="let details of WordDetails" class="word_details">
       <ion-item-divider id="definition" color="light">Definition</ion-item-divider>
-      <ion-card-header>
-        <i>{{details.POS}}</i>
-      </ion-card-header>
+      <ion-title class="pos">
+        {{details.POS.toUpperCase()}}
+      </ion-title>
       <ion-card-content>
         {{details.Definition}}
       </ion-card-content>
 
-      <ion-item-divider id="example" color="light" *ngIf="details.Examples.length>0">Examples</ion-item-divider>
+      <ion-title class="example_title" *ngIf="details.Examples.length>0">
+        Examples
+      </ion-title>
+      <hr />
       <ion-list lines>
-        <ion-item *ngFor="let examples of details.Examples">{{examples.Descr}}</ion-item>
+        <ion-item class="example" *ngFor="let examples of details.Examples">‘{{examples.Descr}}’</ion-item>
       </ion-list>
     </ion-card>
-  </div>
+  </ng-container>
 
-
-  <ion-content padding>
-    <ion-list>
-      <ion-item class="text" *ngFor="let item of items | async">
-        {{item | json}}
-      </ion-item>
-    </ion-list>
-  </ion-content>
+  <!--<ion-content padding>-->
+    <!--<ion-list>-->
+      <!--<ion-item class="text" *ngFor="let item of items | async">-->
+        <!--{{item | json}}-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+  <!--</ion-content>-->
 
 </ion-content>
 
