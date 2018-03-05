@@ -20,25 +20,33 @@ ion-item{
   font-size: 1.4rem !important;
 }
 
-ion-card.word_details *{
-  font-size: 1.6rem;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-}
+ion-card.word_details {
 
-ion-card.word_details ion-title.pos div{
-  font-weight: 700;
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
-  color: #f15a24;
-  padding-top: 15px;
-}
+  * {
+    font-size: 1.6rem;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  }
 
-ion-card.word_details ion-title.example_title div {
-  color: black;
-  font-weight: bold;
-}
+  ion-title.pos div {
+    font-weight: 700;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    color: #f15a24;
+    padding-top: 15px;
+  }
 
-ion-card.word_details ion-item.example ion-label{
-  font-family: 'Merriweather', sans-serif;
-  color: #000;
-  font-style: italic;
+  ion-title.example_title div {
+    color: black;
+    font-weight: bold;
+  }
+
+  ion-label.example {
+    font-family: 'Merriweather', sans-serif;
+    color: #000;
+    font-style: italic;
+    white-space: normal;
+  }
+
+  ion-icon{
+    font-family: Ionicons;
+  }
 }

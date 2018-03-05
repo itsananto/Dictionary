@@ -13,10 +13,7 @@ import {OfflineserviceProvider} from "../../providers/offlineservice/offlineserv
   templateUrl: 'home.html'
 })
 export class HomePage {
-  //ActionWord: string;
-  SearchWord: string;
   OfflineDictionary: KeyedCollection<any>;
-  items: Observable<any[]>;
   IsNetworkAvailable: boolean;
 
   WordDetails: any;
@@ -49,7 +46,10 @@ export class HomePage {
     let searchWord = this.ActionWord.keyword;
 
     if(this.IsNetworkAvailable) {
-      this.WordDetails = this.afDB.list('dictionary/' + searchWord).valueChanges();
+      this.afDB.list('dictionary/' + searchWord).valueChanges().subscribe(val =>
+      {
+        this.WordDetails = val[0];
+      });
     }
     else {
 
