@@ -25,12 +25,11 @@ export class HomePage {
   ActionWord: AutoCompleteComponent;
 
   constructor(public navCtrl: NavController, public offlineDataProvider: OfflineserviceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
-
     //TODO: Check network connectivity
     this.IsNetworkAvailable = false;
 
     if(this.IsNetworkAvailable){
-      this.items = afDB.list('dictionary/a').valueChanges();
+
     }else{
       this.offlineDataProvider.getDictionaryStorage().subscribe(data=>{
 
@@ -38,7 +37,7 @@ export class HomePage {
         this.OfflineDictionary = new KeyedCollection<any>();
 
         for(var i=0;i<result.length;i++){
-          this.OfflineDictionary.Add(result[i].Descr, result[i]);
+          this.OfflineDictionary.Add(result[i].Wrd, result[i]);
         }
 
       });
@@ -47,10 +46,13 @@ export class HomePage {
 
   search(){
     this.WordDetails = null;
+    let searchWord = this.ActionWord.keyword;
+
     if(this.IsNetworkAvailable) {
+      this.WordDetails = this.afDB.list('dictionary/' + searchWord).valueChanges();
     }
     else {
-      let searchWord = this.ActionWord.keyword;
+
       if (this.OfflineDictionary.ContainsKey(searchWord)) {
         this.WordDetails = this.OfflineDictionary.Item(searchWord).Details;
       }

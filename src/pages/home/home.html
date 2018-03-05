@@ -19,12 +19,12 @@
         {{details.Definition}}
       </ion-card-content>
 
-      <ion-title class="example_title" *ngIf="details.Examples.length>0">
+      <ion-title class="example_title" *ngIf="details.ExampleList.length>0">
         Examples
       </ion-title>
       <hr />
       <ion-list lines>
-        <ion-item class="example" *ngFor="let examples of details.Examples">‘{{examples.Descr}}’</ion-item>
+        <ion-item class="example" *ngFor="let example of details.ExampleList">‘{{example}}’</ion-item>
       </ion-list>
     </ion-card>
   </ng-container>
