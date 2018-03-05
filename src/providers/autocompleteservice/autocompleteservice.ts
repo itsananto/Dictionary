@@ -2,8 +2,6 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AutoCompleteService} from "ionic2-auto-complete";
-import {KeyedCollection} from "../../helper/KeyedCollection";
-import {ServiceProvider} from "../service/service";
 
 /*
   Generated class for the AutocompleteserviceProvider provider.
@@ -15,28 +13,27 @@ import {ServiceProvider} from "../service/service";
 export class AutocompleteserviceProvider implements AutoCompleteService {
 
   labelAttribute = "name";
-  AllWords: Array<string>;
+  WordList: Array<string>;
 
 
   constructor(public http: HttpClient) {
-    this.AllWords = new Array<string>();
-    this.http.get('assets/json/storage.json').subscribe(data => {
+    this.WordList = new Array<string>();
 
-      let result = <Words[]>data;
+    this.http.get('assets/json/wordlist.json').subscribe(data => {
 
+      let result = <string[]>data;
       for (var i = 0; i < result.length; i++) {
-        this.AllWords.push(result[i].Descr);
+        this.WordList.push(result[i]);
       }
     });
   }
 
   getResults(keyword: string) {
 
-    let retArray = new Array<string>();
+    keyword = keyword.toLocaleLowerCase();
 
-    for (let i = 0; i < this.AllWords.length; i++) {
-      if (this.AllWords[i].toLocaleLowerCase().startsWith(keyword.toLocaleLowerCase())) retArray.push(this.AllWords[i]);
-    }
+    let retArray = new Array<string>();
+    retArray = this.WordList.filter(word=>word.toLocaleLowerCase().indexOf(keyword)>=0)
     return retArray;
   }
 
