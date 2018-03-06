@@ -39,11 +39,12 @@ ion-card.word_details {
     font-weight: bold;
   }
 
-  ion-label.example {
+  ion-label.example, ion-label.synonym {
     font-family: 'Merriweather', sans-serif;
     color: #000;
     font-style: italic;
     white-space: normal;
+    padding-left: 16px;
   }
 
   ion-icon{
@@ -56,6 +57,11 @@ ion-card.word_details {
 
   button div.item-inner{
     margin-left: 0 !important;
+  }
+
+  .subsense_definition{
+    color: darkblue;
+    font-weight: bold;
   }
 }
 

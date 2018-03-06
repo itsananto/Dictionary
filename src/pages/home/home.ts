@@ -41,8 +41,16 @@ export class HomePage {
     }
   }
 
-  toggleSection(i) {
-    this.WordDetails[i].open = !this.WordDetails[i].open;
+  toggleExample(i) {
+    this.WordDetails[i].openExample = !this.WordDetails[i].openExample;
+  }
+
+  toggleSynonym(i) {
+    this.WordDetails[i].openSynonym = !this.WordDetails[i].openSynonym;
+  }
+
+  toggleSubsenses(i) {
+    this.WordDetails[i].openSubsenses = !this.WordDetails[i].openSubsenses;
   }
 
   search(){
