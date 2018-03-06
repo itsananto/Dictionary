@@ -11,7 +11,7 @@
   <button ion-button full (click)="search()">Search</button>
 
   <ng-container *ngIf="WordDetails">
-    <ion-card *ngFor="let details of WordDetails" class="word_details">
+    <ion-card *ngFor="let details of WordDetails; let i=index" class="word_details">
       <ion-item-divider id="definition" color="light">Definition</ion-item-divider>
       <ion-title class="pos">
         {{details.POS.toUpperCase()}}
@@ -20,14 +20,23 @@
         {{details.Definition}}
       </ion-card-content>
 
-      <ng-container *ngIf="details.ExampleList">
 
-        <ion-title class="example_title">
-          Examples
-        </ion-title>
-        <hr/>
 
+      <ng-container *ngIf="details.ExampleList && details.ExampleList.length>0">
+
+        <!-- Toggle Button -->
+        <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': details.open, 'section': !details.open}">
+          <ion-icon item-left name="ios-arrow-forward" *ngIf="!details.open"></ion-icon>
+          <ion-icon item-left name="ios-arrow-down" *ngIf="details.open"></ion-icon>
+          <ion-title class="example_title">
+            Examples
+          </ion-title>
+        </button>
+
+
+        <ng-container *ngIf="details.open">
         <ion-label class="example" *ngFor="let example of details.ExampleList">‘{{example}}’</ion-label>
+        </ng-container>
 
       </ng-container>
     </ion-card>

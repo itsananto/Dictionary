@@ -23,7 +23,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, public offlineDataProvider: OfflineserviceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
     //TODO: Check network connectivity
-    this.IsNetworkAvailable = false;
+    this.IsNetworkAvailable = true;
 
     if(this.IsNetworkAvailable){
 
@@ -39,6 +39,10 @@ export class HomePage {
 
       });
     }
+  }
+
+  toggleSection(i) {
+    this.WordDetails[i].open = !this.WordDetails[i].open;
   }
 
   search(){
