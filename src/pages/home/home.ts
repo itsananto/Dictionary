@@ -60,7 +60,7 @@ export class HomePage {
     if(this.IsNetworkAvailable) {
       this.afDB.list('dictionary/' + searchWord).valueChanges().subscribe(val =>
       {
-        this.WordDetails = val[0];
+        this.WordDetails = val;
       });
     }
     else {
