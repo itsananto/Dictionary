@@ -17,6 +17,7 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFireDatabase, AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import { OfflineserviceProvider } from '../providers/offlineservice/offlineservice';
+import { Network } from '@ionic-native/network';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDRC5H6C9oTqU6PwsLC4IkuV1zxMDdfx-g",
@@ -58,7 +59,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AutocompleteserviceProvider,
     AngularFireDatabase,
-    OfflineserviceProvider
+    OfflineserviceProvider,
+    Network
   ]
 })
 export class AppModule {}
