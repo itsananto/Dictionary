@@ -22,7 +22,7 @@ export class HomePage {
   ActionWord: AutoCompleteComponent;
 
   constructor(public navCtrl: NavController, public offlineDataProvider: OfflineserviceProvider, public autoCompleteProvider: AutocompleteserviceProvider, public afDB: AngularFireDatabase) {
-    //TODO: Check network connectivity later
+    //TODO: Check network connectivity later .....
     this.IsNetworkAvailable = true;
 
     if(this.IsNetworkAvailable){
